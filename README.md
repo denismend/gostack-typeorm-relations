@@ -1,0 +1,1 @@
+# gostack-typeorm-relations
