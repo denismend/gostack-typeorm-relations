@@ -32,6 +32,14 @@ Nesse desafio, você vai estar criando uma nova aplicação para aprender novas 
 
 Essa será uma aplicação que deve permitir a criação de clientes, produtos e pedidos, onde o cliente pode gerar novos pedidos de compra de certos produtos, como um pequeno e-commerce.
 
+### Como executar
+
+1. Faça o clone do projeto na sua máquina;
+2. Na raiz do projeto, execute o comando `yarn` para baixar as dependências;
+3. Execute `yarn test` para rodar os testes;
+4. Execute `yarn dev:server` para rodar o projeto;
+5. Abra o Insomnia para testar as rotas `repositories` com os métodos `POST`,`GET` e `DELETE`.
+
 ### Template da aplicação
 
 Para te ajudar nesse desafio, criamos para você um modelo que você deve utilizar como um template do Github.
