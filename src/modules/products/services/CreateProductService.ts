@@ -5,7 +5,7 @@ import AppError from '@shared/errors/AppError';
 import Product from '../infra/typeorm/entities/Product';
 import IProductsRepository from '../repositories/IProductsRepository';
 
-interface IRequest {
+interface IRequestDTO {
   name: string;
   price: number;
   quantity: number;
@@ -13,10 +13,29 @@ interface IRequest {
 
 @injectable()
 class CreateProductService {
-  constructor(private productsRepository: IProductsRepository) {}
+  constructor(
+    @inject('ProductsRepository')
+    private productsRepository: IProductsRepository,
+  ) {}
 
-  public async execute({ name, price, quantity }: IRequest): Promise<Product> {
-    // TODO
+  public async execute({
+    name,
+    price,
+    quantity,
+  }: IRequestDTO): Promise<Product> {
+    const checkCustomerExist = await this.productsRepository.findByName(name);
+
+    if (checkCustomerExist) {
+      throw new AppError('Product name already used.');
+    }
+
+    const product = await this.productsRepository.create({
+      name,
+      price,
+      quantity,
+    });
+
+    return product;
   }
 }
 
